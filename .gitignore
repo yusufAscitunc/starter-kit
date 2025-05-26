@@ -1,0 +1,14 @@
+# Node.js
+/frontend/node_modules/
+/frontend/.next/
+/frontend/.env.local
+
+# Java
+/backend/target/
+/backend/.env
+/backend/.idea/
+/backend/.vscode/
+
+# General
+.DS_Store
+.env
