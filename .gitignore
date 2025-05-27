@@ -12,3 +12,5 @@
 # General
 .DS_Store
 .env
+.vscode/
+.idea/
