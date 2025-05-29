@@ -6,4 +6,6 @@ import com.starterkit.backend.user.entity.User;
 
 public interface UserRepository extends JpaRepository<User, Long> {
     boolean existsByEmail(String email);
+
+    User findByEmail(String email);
 } 

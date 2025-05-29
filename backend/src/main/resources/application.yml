@@ -21,3 +21,7 @@ server:
 logging:
     level:
         org.springframework: info
+
+jwt:
+    secret: ${JWT_SECRET}
+    expiration: 86400000 # in miliseconds (1 day)

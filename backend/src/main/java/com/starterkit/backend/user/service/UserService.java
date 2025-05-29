@@ -6,7 +6,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.starterkit.backend.user.dto.UserRequestByIdDto;
-import com.starterkit.backend.user.dto.UserRequestDto;
 import com.starterkit.backend.user.dto.UserResponseDto;
 import com.starterkit.backend.user.dto.UserUpdateRequestDto;
 import com.starterkit.backend.user.entity.User;
@@ -21,17 +20,6 @@ public class UserService {
     private final UserRepository userRepository;
     private final UserMapper userMapper;
     private final PasswordEncoder passwordEncoder;
-
-    public UserResponseDto register(UserRequestDto registerDto) {
-        User user = userMapper.toEntity(registerDto);
-        user.setPassword(passwordEncoder.encode(registerDto.getPassword()));
-        user.setRole(user.getRole() != null ? user.getRole() : "USER"); // Default role if not set
-        if (userRepository.existsByEmail(user.getEmail())) {
-            throw new IllegalArgumentException("Email already exists");
-        }
-        User saved = userRepository.save(user);
-        return userMapper.toDto(saved);
-    }
 
     public List<UserResponseDto> getAll() {
         List<User> users = userRepository.findAll();
