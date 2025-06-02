@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,6 +37,7 @@ public class UserController {
         return ResponseEntity.ok(userDto);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/getAllUsers")
     public ResponseEntity<List<UserResponseDto>> getAll() {
         if (!authService.isAdmin()) {
@@ -45,6 +47,7 @@ public class UserController {
         return ResponseEntity.ok(users);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/getById")
     public ResponseEntity<UserResponseDto> getById(@RequestBody UserRequestByIdDto userId) {
         if (!authService.isAdmin()) {
@@ -57,13 +60,14 @@ public class UserController {
             return ResponseEntity.ok(user);
     }
 
+    @PreAuthorize("hasRole('ADMIN') or #userDto.id == authentication.principal.user.id")
     @PostMapping("/update")
     public ResponseEntity<UserResponseDto> update(@RequestBody UserUpdateRequestDto userDto, 
         @AuthenticationPrincipal CustomUserPrincipal principal) {
             // Check if user is not an admin and trying to update someone else's account
-            // if (!authService.isAdmin() && !principal.getUser().getId().equals(userDto.getId())) {
-            //     return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
-            // }
+            if (!authService.isAdmin()) {
+                return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+            }
 
             UserResponseDto updatedUser = userService.update(userDto);
             if (updatedUser == null) {
@@ -72,6 +76,7 @@ public class UserController {
             return ResponseEntity.ok(updatedUser);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/delete")
     public ResponseEntity<UserResponseDto> delete(@RequestBody UserRequestByIdDto userId, 
         @AuthenticationPrincipal CustomUserPrincipal principal) {
