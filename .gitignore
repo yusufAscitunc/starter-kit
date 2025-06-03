@@ -1,13 +1,33 @@
-# Node.js
-/frontend/node_modules/
-/frontend/.next/
-/frontend/.env.local
-
 # Java
-/backend/target/
-/backend/.env
-/backend/.idea/
-/backend/.vscode/
+target/
+.env
+.env.*
+!.env.example
+.idea/
+.vscode/
+HELP.md
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+*.iws
+*.iml
+*.ipr
+nbproject/private/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+build/
+*.log
+
+# Spring Boot specific
+src/main/resources/application-prod.yml
+src/main/resources/application-staging.yml
+src/main/resources/application-local.yml
 
 # General
 .DS_Store
