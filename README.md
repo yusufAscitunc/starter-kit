@@ -1,9 +1,8 @@
-# Spring Boot + Next.js Starter Kit
+# Spring Boot Starter Kit
 
-Modern, production-ready fullstack SaaS starter:
+Modern, production-ready Backend Spring Boot starter:
 
 - 🔧 Backend: Java 21 + Spring Boot 3.5 + PostgreSQL + JWT Auth
-- 🌐 Frontend: Next.js 15.2 + React 19.1 + Tailwind CSS + shadcn/ui
 - 🔐 Auth: Role-based JWT authentication
 - 📦 Deployment: Docker + Railway/Vercel
 
@@ -12,8 +11,3 @@ Modern, production-ready fullstack SaaS starter:
 # Backend
 cd backend
 ./mvnw spring-boot:run
-
-# Frontend
-cd frontend
-npm install
-npm run dev
