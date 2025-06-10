@@ -2,12 +2,15 @@
 
 Modern, production-ready Backend Spring Boot starter:
 
-- 🔧 Backend: Java 21 + Spring Boot 3.5 + PostgreSQL + JWT Auth
-- 🔐 Auth: Role-based JWT authentication
-- 📦 Deployment: Docker + Railway/Vercel
+-   🔧 Backend: Java 21 + Spring Boot 3.5 + PostgreSQL + JWT Auth
+-   🔐 Auth: Role-based JWT authentication
+-   📦 Deployment: Docker + Railway/Vercel
 
-## Geliştirme
+## Development
+
 ```bash
 # Backend
 cd backend
-./mvnw spring-boot:run
+# Load environment variables and run the application
+export $(cat .env | xargs) && ./mvnw spring-boot:run
+```
